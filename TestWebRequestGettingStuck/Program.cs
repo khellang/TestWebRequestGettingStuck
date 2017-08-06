@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Raven.Abstractions.Util;
 
 namespace TestWebRequestGettingStuck
 {
@@ -16,7 +11,7 @@ namespace TestWebRequestGettingStuck
         {
             for (int i = 1; i < 10001; i++)
             {
-                AsyncHelpers.RunSync(() => client.GetAsync("http://localhost:9000/foo",HttpCompletionOption.ResponseHeadersRead));
+                client.GetAsync("http://localhost:9000/foo",HttpCompletionOption.ResponseHeadersRead).Wait();
                 Console.WriteLine(i);
             }
         }
